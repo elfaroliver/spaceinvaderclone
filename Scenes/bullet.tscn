@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b4usio81u6l2k"]
+
+[ext_resource type="Script" uid="uid://djq25xhefyay1" path="res://Scripts/bullet.gd" id="1_oduel"]
+[ext_resource type="Texture2D" uid="uid://c52nwtr1ta345" path="res://Assets/SpaceshipAmmo64x64.png" id="1_xjght"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oduel"]
+size = Vector2(11, 20)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1827018454]
+script = ExtResource("1_oduel")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1093124141]
+texture = ExtResource("1_xjght")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1321207006]
+position = Vector2(-0.5, -3)
+shape = SubResource("RectangleShape2D_oduel")

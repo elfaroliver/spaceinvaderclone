@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://cvfus6wi12pes"]
+
+[ext_resource type="Texture2D" uid="uid://bgsueckn7ylwb" path="res://Assets/icon.svg" id="1_5a7ea"]
+[ext_resource type="Script" uid="uid://2qllm4t838ij" path="res://Scripts/player.gd" id="2_8j60k"]
+[ext_resource type="Texture2D" uid="uid://ciw8eir8wksey" path="res://Assets/Spaceship1x4.png" id="3_fo5ed"]
+[ext_resource type="Script" uid="uid://bdot5861yh4y7" path="res://Scripts/gun.gd" id="4_fo5ed"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fj7yv"]
+atlas = ExtResource("3_fo5ed")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlwt5"]
+atlas = ExtResource("3_fo5ed")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqk2v"]
+atlas = ExtResource("3_fo5ed")
+region = Rect2(0, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_036b0"]
+atlas = ExtResource("3_fo5ed")
+region = Rect2(0, 768, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dwbse"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fj7yv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlwt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqk2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_036b0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gv5m4"]
+size = Vector2(161, 179)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ukr8"]
+size = Vector2(27, 46)
+
+[node name="World" type="Node2D" unique_id=456812661]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1015173002]
+position = Vector2(211.50003, 325)
+scale = Vector2(4.3046875, 6.078125)
+texture = ExtResource("1_5a7ea")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1524417423]
+position = Vector2(200, 787)
+script = ExtResource("2_8j60k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=65518535]
+z_index = -1
+position = Vector2(0, 5)
+scale = Vector2(0.99609375, 0.98046875)
+sprite_frames = SubResource("SpriteFrames_dwbse")
+autoplay = "default"
+frame_progress = 0.79222983
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1697811799]
+position = Vector2(0.5, 33.5)
+shape = SubResource("RectangleShape2D_gv5m4")
+
+[node name="LeftGun" type="Area2D" parent="Player" unique_id=1881656405]
+script = ExtResource("4_fo5ed")
+
+[node name="Ammo" type="Sprite2D" parent="Player/LeftGun" unique_id=1635895747]
+position = Vector2(404, -16)
+scale = Vector2(2.5, 2.6875)
+
+[node name="Ammo2" type="Sprite2D" parent="Player/LeftGun" unique_id=515309526]
+position = Vector2(-174, -19)
+scale = Vector2(2.5, 2.6875)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/LeftGun" unique_id=1415431628]
+position = Vector2(67, -26)
+shape = SubResource("RectangleShape2D_5ukr8")
+
+[node name="RightGun" type="Area2D" parent="Player" unique_id=70419401]
+position = Vector2(-41, 190)
+script = ExtResource("4_fo5ed")
+
+[node name="Ammo" type="Sprite2D" parent="Player/RightGun" unique_id=345467673]
+position = Vector2(404, -16)
+scale = Vector2(2.5, 2.6875)
+
+[node name="Ammo2" type="Sprite2D" parent="Player/RightGun" unique_id=1122622356]
+position = Vector2(-174, -19)
+scale = Vector2(2.5, 2.6875)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/RightGun" unique_id=498715138]
+position = Vector2(-24, -216)
+shape = SubResource("RectangleShape2D_5ukr8")
