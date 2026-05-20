@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var speed = 5
-@export var dashSpeed = 125
+@export var dashSpeed = 250
 
 var bullet_path = preload("res://Scenes/bullet.tscn")
 

@@ -50,12 +50,12 @@ size = Vector2(161, 179)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1015173002]
 z_index = -1
-position = Vector2(217.00003, 354)
+position = Vector2(364.00003, 392.00003)
 scale = Vector2(4.3046875, 6.078125)
 texture = ExtResource("1_5a7ea")
 
 [node name="RightWall" type="StaticBody2D" parent="." unique_id=960025126]
-position = Vector2(558, 463)
+position = Vector2(854, 814)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=243142184]
@@ -63,7 +63,7 @@ position = Vector2(1.125, 1)
 shape = SubResource("RectangleShape2D_5a7ea")
 
 [node name="LeftWall" type="StaticBody2D" parent="." unique_id=1544480761]
-position = Vector2(-133, 467)
+position = Vector2(-136, 815)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall" unique_id=1454515992]
@@ -71,7 +71,7 @@ position = Vector2(1.125, 1)
 shape = SubResource("RectangleShape2D_5a7ea")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1524417423]
-position = Vector2(213, 787)
+position = Vector2(343, 983)
 motion_mode = 1
 script = ExtResource("2_8j60k")
 metadata/_edit_group_ = true
