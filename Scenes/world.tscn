@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bgsueckn7ylwb" path="res://Assets/icon.svg" id="1_5a7ea"]
 [ext_resource type="Script" uid="uid://2qllm4t838ij" path="res://Scripts/player.gd" id="2_8j60k"]
-[ext_resource type="Texture2D" uid="uid://ciw8eir8wksey" path="res://Assets/Spaceship1x4.png" id="3_fo5ed"]
+[ext_resource type="Texture2D" uid="uid://d1au76v5q03x0" path="res://Assets/1GunSpaceShip2x3256x256.png" id="3_o06y3"]
 [ext_resource type="Texture2D" uid="uid://cug3nuqloe1x3" path="res://Assets/spaceinvaderenemy64x64.png" id="4_8j60k"]
 [ext_resource type="Script" uid="uid://cll5iwx50rvki" path="res://Scripts/enemy.gd" id="4_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://ugsr161uo3s6" path="res://Scenes/enemy.tscn" id="4_o06y3"]
@@ -11,40 +11,54 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5a7ea"]
 size = Vector2(265.75, 928)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fj7yv"]
-atlas = ExtResource("3_fo5ed")
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7acu"]
+atlas = ExtResource("3_o06y3")
 region = Rect2(0, 0, 256, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tlwt5"]
-atlas = ExtResource("3_fo5ed")
+[sub_resource type="AtlasTexture" id="AtlasTexture_5v1tr"]
+atlas = ExtResource("3_o06y3")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fj1v"]
+atlas = ExtResource("3_o06y3")
 region = Rect2(0, 256, 256, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aqk2v"]
-atlas = ExtResource("3_fo5ed")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikia7"]
+atlas = ExtResource("3_o06y3")
+region = Rect2(256, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yui6"]
+atlas = ExtResource("3_o06y3")
 region = Rect2(0, 512, 256, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_036b0"]
-atlas = ExtResource("3_fo5ed")
-region = Rect2(0, 768, 256, 256)
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5t2i"]
+atlas = ExtResource("3_o06y3")
+region = Rect2(256, 512, 256, 256)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_dwbse"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_e0ngr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fj7yv")
+"texture": SubResource("AtlasTexture_k7acu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tlwt5")
+"texture": SubResource("AtlasTexture_5v1tr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_aqk2v")
+"texture": SubResource("AtlasTexture_0fj1v")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_036b0")
+"texture": SubResource("AtlasTexture_ikia7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yui6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5t2i")
 }],
 "loop": true,
 "name": &"default",
-"speed": 12.0
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gv5m4"]
@@ -77,27 +91,28 @@ position = Vector2(1.125, 1)
 shape = SubResource("RectangleShape2D_5a7ea")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1524417423]
-position = Vector2(348, 990)
+position = Vector2(345, 883)
+scale = Vector2(0.8, 0.8)
 motion_mode = 1
 script = ExtResource("2_8j60k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=65518535]
 z_index = -1
-position = Vector2(0, 5)
-scale = Vector2(0.99609375, 0.98046875)
-sprite_frames = SubResource("SpriteFrames_dwbse")
+position = Vector2(10.1875305, 29.624973)
+scale = Vector2(1.4311525, 1.5986328)
+sprite_frames = SubResource("SpriteFrames_e0ngr")
 autoplay = "default"
-frame_progress = 0.79222983
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1697811799]
-position = Vector2(0, 45)
+position = Vector2(10, 59)
 shape = SubResource("RectangleShape2D_gv5m4")
 
 [node name="RightGun" type="Node2D" parent="Player" unique_id=1629937752]
-position = Vector2(67, -64)
+position = Vector2(11.249996, -41.249985)
 
 [node name="LeftGun" type="Node2D" parent="Player" unique_id=1335385758]
-position = Vector2(-67, -64)
+visible = false
+position = Vector2(-146.25, -98.749985)
 
 [node name="ShootTimer" type="Timer" parent="Player" unique_id=1212463266]
 wait_time = 0.25

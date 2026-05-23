@@ -38,13 +38,13 @@ func _on_dash_timer_timeout():
 	
 func fire1():
 	var bullet = bullet_path.instantiate()
-	bullet.pos=$RightGun.global_position
+	bullet.pos=$LeftGun.global_position
 	bullet.rota=global_rotation
 	get_parent().add_child(bullet)
 	
 func fire2():
 	var bullet = bullet_path.instantiate()
-	bullet.pos=$LeftGun.global_position
+	bullet.pos=$RightGun.global_position
 	bullet.rota=global_rotation
 	get_parent().add_child(bullet)
 	
