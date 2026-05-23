@@ -3,7 +3,8 @@ extends CharacterBody2D
 @export var speed = 5
 @export var dashSpeed = 250
 
-var bullet_path = preload("res://Scenes/bullet.tscn")
+#var bullet_path = preload("res://Scenes/bullet.tscn")
+var bullet_path = preload("res://Scenes/BulletArea2D.tscn")
 
 var can_shoot = true
 var can_dash = true
@@ -18,23 +19,16 @@ func _physics_process(delta):
 	
 	if (Input.is_action_just_pressed("DashLeft") or Input.is_action_just_pressed("DashRight")) and can_dash:
 		var dash_direction = Vector2(dash, 0)
-		#move_and_collide(dash_direction * dashSpeed)
 		move_and_collide(dash_direction * dashSpeed * 50 * delta)
 		can_dash = false
 		$DashTimer.start()
 	
 	if Input.is_action_pressed("Shoot") and can_shoot:
-		fire1()
+		#fire1()
 		fire2()
 		can_shoot = false
 		$ShootTimer.start()
 		
-	#var screen_size = get_viewport_rect().size
-#
-	#var margin = 32
-#
-	#position.x = clamp(position.x, margin, screen_size.x - margin)
-	#position.y = clamp(position.y, margin, screen_size.y - margin)
 		
 func _on_shoot_timer_timeout():
 	can_shoot = true

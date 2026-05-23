@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ugsr161uo3s6"]
+
+[ext_resource type="Script" uid="uid://cll5iwx50rvki" path="res://Scripts/enemy.gd" id="1_1f0kj"]
+[ext_resource type="Texture2D" uid="uid://cug3nuqloe1x3" path="res://Assets/spaceinvaderenemy64x64.png" id="2_afpow"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fo5ed"]
+size = Vector2(59, 58)
+
+[node name="Enemy" type="Area2D" unique_id=1739603191 groups=["enemy"]]
+script = ExtResource("1_1f0kj")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=210851491]
+texture = ExtResource("2_afpow")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=917816632]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_fo5ed")

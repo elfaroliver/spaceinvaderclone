@@ -3,6 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://bgsueckn7ylwb" path="res://Assets/icon.svg" id="1_5a7ea"]
 [ext_resource type="Script" uid="uid://2qllm4t838ij" path="res://Scripts/player.gd" id="2_8j60k"]
 [ext_resource type="Texture2D" uid="uid://ciw8eir8wksey" path="res://Assets/Spaceship1x4.png" id="3_fo5ed"]
+[ext_resource type="Texture2D" uid="uid://cug3nuqloe1x3" path="res://Assets/spaceinvaderenemy64x64.png" id="4_8j60k"]
+[ext_resource type="Script" uid="uid://cll5iwx50rvki" path="res://Scripts/enemy.gd" id="4_fo5ed"]
+[ext_resource type="PackedScene" uid="uid://ugsr161uo3s6" path="res://Scenes/enemy.tscn" id="4_o06y3"]
+[ext_resource type="Script" uid="uid://emupy14ve5aa" path="res://Scripts/spawner.gd" id="6_5ukr8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5a7ea"]
 size = Vector2(265.75, 928)
@@ -46,10 +50,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gv5m4"]
 size = Vector2(161, 179)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fo5ed"]
+size = Vector2(59, 58)
+
 [node name="World" type="Node2D" unique_id=456812661]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1015173002]
-z_index = -1
+[node name="Background" type="Sprite2D" parent="." unique_id=1015173002]
 position = Vector2(364.00003, 392.00003)
 scale = Vector2(4.3046875, 6.078125)
 texture = ExtResource("1_5a7ea")
@@ -71,10 +77,9 @@ position = Vector2(1.125, 1)
 shape = SubResource("RectangleShape2D_5a7ea")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1524417423]
-position = Vector2(343, 983)
+position = Vector2(348, 990)
 motion_mode = 1
 script = ExtResource("2_8j60k")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=65518535]
 z_index = -1
@@ -89,10 +94,10 @@ position = Vector2(0, 45)
 shape = SubResource("RectangleShape2D_gv5m4")
 
 [node name="RightGun" type="Node2D" parent="Player" unique_id=1629937752]
-position = Vector2(69, -79)
+position = Vector2(67, -64)
 
 [node name="LeftGun" type="Node2D" parent="Player" unique_id=1335385758]
-position = Vector2(-68, -80)
+position = Vector2(-67, -64)
 
 [node name="ShootTimer" type="Timer" parent="Player" unique_id=1212463266]
 wait_time = 0.25
@@ -101,6 +106,37 @@ one_shot = true
 [node name="DashTimer" type="Timer" parent="Player" unique_id=584702207]
 wait_time = 2.0
 one_shot = true
+
+[node name="Enemy" parent="." unique_id=1739603191 instance=ExtResource("4_o06y3")]
+position = Vector2(126, 482)
+
+[node name="Enemy2" type="Area2D" parent="." unique_id=745645139 groups=["enemy"]]
+position = Vector2(576, 491)
+script = ExtResource("4_fo5ed")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy2" unique_id=40377091]
+texture = ExtResource("4_8j60k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2" unique_id=540581021]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_fo5ed")
+
+[node name="Enemy3" type="Area2D" parent="." unique_id=1643869214 groups=["enemy"]]
+position = Vector2(222, 554)
+script = ExtResource("4_fo5ed")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy3" unique_id=33603254]
+texture = ExtResource("4_8j60k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3" unique_id=1539795838]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_fo5ed")
+
+[node name="Spawner" type="Node2D" parent="." unique_id=1046670168]
+script = ExtResource("6_5ukr8")
+enemy_scene = ExtResource("4_o06y3")
 
 [connection signal="timeout" from="Player/ShootTimer" to="Player" method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="Player/DashTimer" to="Player" method="_on_dash_timer_timeout"]
