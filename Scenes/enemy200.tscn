@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dktrxgyadsdld"]
+
+[ext_resource type="Script" uid="uid://cll5iwx50rvki" path="res://Scripts/enemy.gd" id="1_o6phs"]
+[ext_resource type="Texture2D" uid="uid://dlk52e4phfd8f" path="res://Assets/spaceinvaderenemy200pts64x64.png" id="2_o6phs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fo5ed"]
+size = Vector2(59, 58)
+
+[node name="Enemy200" type="Area2D" unique_id=1361976703 groups=["enemy"]]
+script = ExtResource("1_o6phs")
+health = 4
+speed = 75.0
+score = 200
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1178091174]
+texture = ExtResource("2_o6phs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1931821114]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_fo5ed")

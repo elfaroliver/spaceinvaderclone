@@ -1,11 +1,17 @@
 extends Node2D
 
-@export var enemy_scene: PackedScene
-@export var spawn_interval := 1.0
+@export var enemy_basic: PackedScene
+@export var enemy_fast: PackedScene
 
-var timer := 0.0
+var fast_timer := 0.0
+var slow_timer := 0.0
+
+var fast_interval := 1.75
+var slow_interval := 5.0
+
 var min_x := 0.0
 var max_x := 0.0
+
 
 func _ready():
 	var screen_width = get_viewport_rect().size.x
@@ -14,21 +20,29 @@ func _ready():
 	min_x = margin
 	max_x = screen_width - margin
 
-
 func _process(delta):
-	timer += delta
+	fast_timer += delta
+	slow_timer += delta
 
-	if timer >= spawn_interval:
-		timer = 0
-		spawn_enemy()
+	# FAST SPAWN (every 1.75s)
+	if fast_timer >= fast_interval:
+		fast_timer = 0
+		print("Spawn 1.75sec")
+		spawn_enemy(enemy_basic)
+
+	# SLOW SPAWN (every 5s)
+	if slow_timer >= slow_interval:
+		slow_timer = 0
+		print("Spawn 5sec")
+		spawn_enemy(enemy_fast)
 
 
-func spawn_enemy():
-	var enemy = enemy_scene.instantiate()
+func spawn_enemy(scene: PackedScene):
+	var enemy = scene.instantiate()
 
-	var x = randf_range(min_x, max_x)
-	var y = -50
-
-	enemy.global_position = Vector2(x, y)
+	enemy.global_position = Vector2(
+		randf_range(min_x, max_x),
+		-50
+	)
 
 	add_child(enemy)

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bh4jppyyxquag"]
+
+[ext_resource type="Script" uid="uid://b068f6gp0mlsv" path="res://Scripts/score_popup.gd" id="1_6333m"]
+
+[node name="ScorePopup" type="Node2D" unique_id=1646052098]
+script = ExtResource("1_6333m")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1364479901]
+offset_left = 203.0
+offset_top = 83.0
+offset_right = 274.0
+offset_bottom = 146.0

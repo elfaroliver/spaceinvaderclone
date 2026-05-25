@@ -1,15 +1,19 @@
 [gd_scene format=3 uid="uid://cvfus6wi12pes"]
 
 [ext_resource type="Texture2D" uid="uid://bgsueckn7ylwb" path="res://Assets/icon.svg" id="1_5a7ea"]
+[ext_resource type="Script" uid="uid://dasioua10dnqp" path="res://Scripts/world.gd" id="1_k7acu"]
 [ext_resource type="Script" uid="uid://2qllm4t838ij" path="res://Scripts/player.gd" id="2_8j60k"]
 [ext_resource type="Texture2D" uid="uid://d1au76v5q03x0" path="res://Assets/1GunSpaceShip2x3256x256.png" id="3_o06y3"]
 [ext_resource type="Texture2D" uid="uid://cug3nuqloe1x3" path="res://Assets/spaceinvaderenemy64x64.png" id="4_8j60k"]
 [ext_resource type="Script" uid="uid://cll5iwx50rvki" path="res://Scripts/enemy.gd" id="4_fo5ed"]
-[ext_resource type="PackedScene" uid="uid://ugsr161uo3s6" path="res://Scenes/enemy.tscn" id="4_o06y3"]
+[ext_resource type="PackedScene" uid="uid://ugsr161uo3s6" path="res://Scenes/enemy100.tscn" id="4_o06y3"]
 [ext_resource type="Script" uid="uid://emupy14ve5aa" path="res://Scripts/spawner.gd" id="6_5ukr8"]
+[ext_resource type="PackedScene" uid="uid://dktrxgyadsdld" path="res://Scenes/enemy200.tscn" id="9_5v1tr"]
+[ext_resource type="Texture2D" uid="uid://dlk52e4phfd8f" path="res://Assets/spaceinvaderenemy200pts64x64.png" id="10_0fj1v"]
+[ext_resource type="PackedScene" uid="uid://bh4jppyyxquag" path="res://Scenes/score_popup.tscn" id="11_7yui6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5a7ea"]
-size = Vector2(265.75, 928)
+size = Vector2(76.75, 928)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k7acu"]
 atlas = ExtResource("3_o06y3")
@@ -67,7 +71,11 @@ size = Vector2(161, 179)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fo5ed"]
 size = Vector2(59, 58)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikia7"]
+
 [node name="World" type="Node2D" unique_id=456812661]
+script = ExtResource("1_k7acu")
+popup_scene = ExtResource("11_7yui6")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1015173002]
 position = Vector2(364.00003, 392.00003)
@@ -75,15 +83,15 @@ scale = Vector2(4.3046875, 6.078125)
 texture = ExtResource("1_5a7ea")
 
 [node name="RightWall" type="StaticBody2D" parent="." unique_id=960025126]
-position = Vector2(854, 814)
+position = Vector2(848, 814)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=243142184]
-position = Vector2(1.125, 1)
+position = Vector2(-93.375, 1)
 shape = SubResource("RectangleShape2D_5a7ea")
 
 [node name="LeftWall" type="StaticBody2D" parent="." unique_id=1544480761]
-position = Vector2(-136, 815)
+position = Vector2(-37, 815)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall" unique_id=1454515992]
@@ -151,7 +159,31 @@ shape = SubResource("RectangleShape2D_fo5ed")
 
 [node name="Spawner" type="Node2D" parent="." unique_id=1046670168]
 script = ExtResource("6_5ukr8")
-enemy_scene = ExtResource("4_o06y3")
+enemy_basic = ExtResource("4_o06y3")
+enemy_fast = ExtResource("9_5v1tr")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=982167951]
+offset_left = 41.0
+offset_top = 897.0
+offset_right = 66.0
+offset_bottom = 946.0
+text = "0
+"
+
+[node name="Enemy200" parent="." unique_id=1361976703 instance=ExtResource("9_5v1tr")]
+position = Vector2(444, 1108)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Enemy200" unique_id=193104471]
+texture = ExtResource("10_0fj1v")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Enemy200" unique_id=99390302]
+shape = SubResource("RectangleShape2D_ikia7")
+
+[node name="TimerLabel" type="Label" parent="." unique_id=1180019784]
+offset_left = 358.0
+offset_top = 90.0
+offset_right = 398.0
+offset_bottom = 113.0
 
 [connection signal="timeout" from="Player/ShootTimer" to="Player" method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="Player/DashTimer" to="Player" method="_on_dash_timer_timeout"]
